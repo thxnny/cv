@@ -1,0 +1,355 @@
+\documentclass[10pt, letterpaper]{article}
+
+% Packages:
+\usepackage[
+    ignoreheadfoot,
+    top=2 cm,
+    bottom=2 cm,
+    left=2 cm,
+    right=2 cm,
+    footskip=1.0 cm,
+]{geometry}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage[dvipsnames]{xcolor}
+\definecolor{primaryColor}{RGB}{0, 0, 0}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{amsmath}
+\usepackage[
+    pdftitle={Than_CV},
+    pdfauthor={Than Chayawik},
+    pdfcreator={LaTeX with RenderCV},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref}
+\usepackage[pscoord]{eso-pic}
+\usepackage{calc}
+\usepackage{bookmark}
+\usepackage{lastpage}
+\usepackage{changepage}
+\usepackage{paracol}
+\usepackage{ifthen}
+\usepackage{needspace}
+\usepackage{iftex}
+
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    \usepackage[T1]{fontenc}
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+\usepackage{charter}
+
+% Some settings:
+\raggedright
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt}
+\pagestyle{empty}
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\topskip}{0pt}
+\setlength{\columnsep}{0.15cm}
+\pagenumbering{gobble}
+
+\titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
+
+\titlespacing{\section}{-1pt}{0.3 cm}{0.2 cm}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$}
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=0 cm + 10pt
+    ]
+}{
+    \end{itemize}
+}
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{0 cm + 0.00001 cm}{0 cm + 0.00001 cm}
+}{
+    \end{adjustwidth}
+}
+
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 4.5 cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+}
+
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\linespread{1.5}
+}{
+    \par\kern\topsep
+}
+
+\let\hrefWithoutArrow\href
+
+\begin{document}
+    \newcommand{\AND}{\unskip
+        \cleaders\copy\ANDbox\hskip\wd\ANDbox
+        \ignorespaces
+    }
+    \newsavebox\ANDbox
+    \sbox\ANDbox{$|$}
+
+    \begin{header}
+        \fontsize{25 pt}{25 pt}\selectfont Than Chayawik
+
+        \vspace{5 pt}
+
+        \normalsize
+        \faLinkedin
+        \kern 5.0 pt%
+        \mbox{\hrefWithoutArrow{https://www.linkedin.com/in/than-chayawik-8a1b92321/}{Than Chayawik}}%
+        \kern 5.0 pt%
+        \AND%
+        \kern 5.0 pt%
+        \faEnvelope
+        \kern 5.0 pt%
+        \mbox{\hrefWithoutArrow{mailto:thanc.work@gmail.com}{thanc.work@gmail.com}}%
+        \kern 5.0 pt%
+        \AND%
+        \kern 5.0 pt%
+        \faPhone
+        \kern 5.0 pt%
+        \mbox{\hrefWithoutArrow{tel:+66-95-938-9589}{095 938 9589}}%
+        \kern 5.0 pt%
+        \AND%
+        \kern 5.0 pt%
+        \faGithub
+        \kern 5.0 pt%
+        \mbox{\hrefWithoutArrow{https://github.com/thxnny}{thxnny}}%
+    \end{header}
+
+    \vspace{5 pt - 0.3 cm}
+
+
+    \section{Summary}
+        \begin{onecolentry}
+            Full-stack software engineer with experience across web development, cloud infrastructure, and DevOps. Built and shipped production systems using React, NestJS, and Next.js while managing AWS infrastructure with Terraform and CI/CD pipelines. Experienced collaborating with international teams and non-Thai-speaking colleagues in English-speaking work environments. BS in Computer Science with First Class Honors.
+        \end{onecolentry}
+
+
+    \section{Work Experience}
+        \vspace{0.10 cm}
+        \begin{twocolentry}{
+            May 2025 -- present
+        }
+            \textbf{Junior Software Engineer}, Onify Company Limited
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            Cloud Infrastructure \& DevOps [AWS, Terraform, GitHub Actions, Vercel]
+        \end{onecolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Provision and manage cloud infrastructure on AWS (VPC, ECS, ECR, EC2, RDS, S3, IAM, ALB, Route53) using Terraform for repeatable, version-controlled deployments
+                \item Build and maintain CI/CD pipelines with GitHub Actions, enabling zero-downtime deployments across Staging, UAT, and Production environments
+                \item Deploy serverless web applications (Next.js, WordPress) on Vercel and manage secrets securely via 1Password
+            \end{highlights}
+        \end{onecolentry}
+
+        \vspace{0.2 cm}
+        \begin{onecolentry}
+            SSO Benefit Management System -- Government Social Welfare Platform [Kubernetes, GitHub Actions, Docker, ArgoCD]
+        \end{onecolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Designed and maintained CI/CD pipelines with GitHub Actions for 8 microservices (Spring Boot + React), using change detection to selectively build and deploy only affected services
+                \item Implemented GitOps workflow with ArgoCD and a dedicated infrastructure repo, automating Kubernetes manifest generation and achieving zero-downtime deployments
+                \item Built multi-stage Docker images for Java and React services, including gzip pre-compression of frontend assets for optimized delivery via nginx
+                \item Managed GitHub-to-GitLab monorepo sync using git subtree, maintaining separate service repos for controlled release branching across Dev, UAT, and Production
+                \item Set up HTTPS reverse proxy bridging for secure communication between internal services and external government APIs
+            \end{highlights}
+        \end{onecolentry}
+
+        \vspace{0.2 cm}
+        \begin{onecolentry}
+            Outsourced Project -- Hospital Information System [Angular, Spring Boot, Node.js]
+        \end{onecolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Develop frontend features for a large-scale HIS with complex business logic using Angular
+                \item Manage and maintain 4 backend microservices built with Spring Boot and Node.js
+            \end{highlights}
+        \end{onecolentry}
+
+        \vspace{0.2 cm}
+        \begin{onecolentry}
+            Web Application Development [ReactJS, NestJS, TypeScript]
+        \end{onecolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Develop and maintain full-stack web applications with a focus on clean, maintainable code and system performance
+            \end{highlights}
+        \end{onecolentry}
+
+
+        \vspace{0.5 cm}
+
+        \begin{twocolentry}{
+            Nov 2024 -- Mar 2025
+        }
+            \textbf{Developer Intern}, Bluebik Vulcan Company Limited
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            Legal Documents Management System [ReactJS, NestJS, TypeScript]
+        \end{onecolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Collaborated with Systems Analysts to design features and translate requirements into implementation
+                \item Built reusable UI components to improve consistency and reduce duplication across the application
+                \item Wrote comprehensive unit tests to ensure code reliability and prevent regressions
+            \end{highlights}
+        \end{onecolentry}
+
+
+        \vspace{0.5 cm}
+
+        \begin{twocolentry}{
+            Apr 2024 -- Sep 2024
+        }
+            \textbf{Full Stack Developer Intern}, Trienpont International
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            Human Resource Management System [Next.js, Supabase, TypeScript]
+        \end{onecolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Gathered requirements directly from HR stakeholders and collaborated with Senior Engineers to architect the solution
+                \item Designed optimized PostgreSQL schema with stored procedures for complex query logic
+                \item Built a responsive, server-side rendered UI for improved performance and SEO
+                \item Developed custom Slack bots enabling staff to interact with internal tools directly from Slack
+            \end{highlights}
+        \end{onecolentry}
+
+        \vspace{0.2 cm}
+        \begin{onecolentry}
+            Crypto Game Reviews \& News Platform [Next.js, Strapi, TypeScript]
+        \end{onecolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Maintained and enhanced a legacy codebase while improving page load performance and implementing new client-requested features
+            \end{highlights}
+        \end{onecolentry}
+
+        \vspace{0.2 cm}
+        \begin{onecolentry}
+            Alcohol Store API Scraper [JavaScript]
+        \end{onecolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Reverse-engineered website APIs and built an automated data pipeline with cron jobs to extract and export product data to CSV for analytics
+            \end{highlights}
+        \end{onecolentry}
+
+
+        \vspace{0.5 cm}
+
+        \begin{twocolentry}{
+            Apr 2023 -- Mar 2024
+        }
+            \textbf{Full Stack Developer Intern}, Computer Center, Burapha University
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            E-Office Platform: User Management, Help Desk \& IT-Clinic Systems [NestJS, VueJS, TypeScript]
+        \end{onecolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Independently built three internal web applications end-to-end after gathering requirements from university administrative staff
+                \item Integrated APIs with the university's complex legacy user database, ensuring secure access and optimized query performance
+                \item Delivered all three systems on schedule as the sole developer, resolving technical challenges through self-directed research
+            \end{highlights}
+        \end{onecolentry}
+
+
+    \section{Skills}
+        \begin{onecolentry}
+            \textbf{Languages:} TypeScript, JavaScript, Go, Java, HTML, CSS, SQL
+        \end{onecolentry}
+
+        \vspace{0.2 cm}
+
+        \begin{onecolentry}
+            \textbf{Frameworks:} NestJS, Spring Boot, Echo, Next.js, ReactJS, VueJS, Angular
+        \end{onecolentry}
+
+        \vspace{0.2 cm}
+
+        \begin{onecolentry}
+            \textbf{Database:} PostgreSQL, MySQL, Oracle, Redis
+        \end{onecolentry}
+
+        \vspace{0.2 cm}
+
+        \begin{onecolentry}
+            \textbf{DevOps:} AWS, Kubernetes, ArgoCD, Docker, Terraform, GitHub Actions, Vercel
+        \end{onecolentry}
+
+        \vspace{0.2 cm}
+
+        \begin{onecolentry}
+            \textbf{Other:} Git, nginx, Tailwind CSS, Supabase, Jira
+        \end{onecolentry}
+
+
+    \section{Education}
+        \begin{twocolentry}{
+            2021 -- 2025
+        }
+            \textbf{Burapha University}, BS in Computer Science (First Class Honors)
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item \textbf{GPA:} 3.86
+                \item \textbf{Relevant Coursework:} Web Development, Advanced Database, Object-Oriented Programming, Data Structures and Algorithms, Data Engineering, Cloud Computing, Computer Architecture, Computer Networks
+            \end{highlights}
+        \end{onecolentry}
+
+
+    \section{Languages}
+        \begin{onecolentry}
+            \textbf{Thai:} Native \quad\textbf{English:} Intermediate
+        \end{onecolentry}
+
+\end{document}
