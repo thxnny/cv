@@ -154,6 +154,22 @@
 
         \vspace{0.10 cm}
         \begin{onecolentry}
+            Internal Multi-Tenant Kubernetes Platform [OpenTofu, AWS EKS, ArgoCD, GitHub OIDC]
+        \end{onecolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Designed and built a shared multi-tenant Kubernetes platform on AWS EKS from scratch with OpenTofu, onboarding multiple application tenants onto a single cluster with namespace-level isolation
+                \item Implemented GitOps delivery with ArgoCD (App-of-Apps) and ArgoCD Image Updater, automating the full pipeline: git push $\rightarrow$ ECR build $\rightarrow$ automated image rollout with zero manual deploys
+                \item Eliminated static AWS credentials for all workloads and CI by adopting EKS Pod Identity, IRSA, and GitHub Actions OIDC
+                \item Manage domain and DNS in Cloudflare, standardizing ingress with a wildcard ACM certificate, a shared per-environment ALB, and a wildcard DNS record so onboarding a new application requires zero certificate or DNS work
+                \item Provisioned platform add-ons (AWS Load Balancer Controller, External Secrets Operator, EBS CSI gp3 StorageClass) and supporting infrastructure (ECR, DNS, SES with DKIM), with remote state versioned in S3
+            \end{highlights}
+        \end{onecolentry}
+
+        \vspace{0.2 cm}
+        \begin{onecolentry}
             Cloud Infrastructure \& DevOps [AWS, Terraform, GitHub Actions, Vercel]
         \end{onecolentry}
 
@@ -311,7 +327,7 @@
         \vspace{0.2 cm}
 
         \begin{onecolentry}
-            \textbf{DevOps:} AWS, Kubernetes, ArgoCD, Docker, Terraform, GitHub Actions, GitLab CI, Vercel
+            \textbf{DevOps:} AWS, Kubernetes, ArgoCD, Docker, Terraform, GitHub Actions, GitLab CI, Cloudflare, Vercel
         \end{onecolentry}
 
         \vspace{0.2 cm}
