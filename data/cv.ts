@@ -1,14 +1,20 @@
 export const profile = {
   name: "Than Chayawik",
   role: "Full-Stack Software Engineer",
+  // Short, punchy hero line — distinct from the fuller `summary` used in About.
+  tagline: "I provision, ship, and operate production systems — from infrastructure to the frontend.",
   summary:
     "Full-stack software engineer with experience across web development, cloud infrastructure, and DevOps. I build and ship production systems with React, Next.js, Spring Boot and NestJS while managing AWS infrastructure with Terraform and CI/CD pipelines. I enjoy working in international, cross-cultural teams.",
-  location: "Thailand",
+  location: "Bangkok, Thailand",
+  timezone: "UTC+7",
+  available: true,
   email: "thanc.work@gmail.com",
   phone: "+66 95 938 9589",
   github: "https://github.com/thxnny",
   githubHandle: "thxnny",
   linkedin: "https://www.linkedin.com/in/than-chayawik-8a1b92321/",
+  linkedinHandle: "in/than-chayawik",
+  siteUrl: "https://thxnny.dev",
 };
 
 export type Experience = {
@@ -28,6 +34,17 @@ export const experience: Experience[] = [
     title: "Junior Software Engineer",
     period: "May 2025 – Present",
     projects: [
+      {
+        name: "Internal Multi-Tenant Kubernetes Platform",
+        stack: ["OpenTofu", "AWS EKS", "ArgoCD", "GitHub OIDC"],
+        highlights: [
+          "Designed and built a shared multi-tenant Kubernetes platform on AWS EKS from scratch with OpenTofu, onboarding multiple application tenants onto a single cluster with namespace-level isolation.",
+          "Implemented GitOps delivery with ArgoCD (App-of-Apps) and ArgoCD Image Updater, automating the full pipeline from git push to ECR build to automated image rollout with no manual deploys.",
+          "Eliminated static AWS credentials for all workloads and CI by adopting EKS Pod Identity, IRSA, and GitHub Actions OIDC.",
+          "Manage domain and DNS in Cloudflare, standardizing ingress with a wildcard ACM certificate, a shared per-environment ALB, and a wildcard DNS record so onboarding a new application requires zero certificate or DNS work.",
+          "Provisioned platform add-ons (AWS Load Balancer Controller, External Secrets Operator, EBS CSI gp3 StorageClass) and supporting infrastructure (ECR, DNS, SES with DKIM), with remote state versioned in S3.",
+        ],
+      },
       {
         name: "Cloud Infrastructure & DevOps",
         stack: ["AWS", "Terraform", "GitHub Actions", "Vercel"],
@@ -129,7 +146,7 @@ export const skills: { group: string; items: string[] }[] = [
   { group: "Languages", items: ["TypeScript", "JavaScript", "Go", "Java", "HTML", "CSS", "SQL"] },
   { group: "Frameworks", items: ["NestJS", "Spring Boot", "Echo", "Next.js", "ReactJS", "VueJS", "Angular"] },
   { group: "Database", items: ["PostgreSQL", "MySQL", "Oracle", "Redis"] },
-  { group: "DevOps", items: ["AWS", "Kubernetes", "ArgoCD", "Docker", "Terraform", "GitHub Actions", "GitLab CI", "Vercel"] },
+  { group: "DevOps", items: ["AWS", "Kubernetes", "ArgoCD", "Docker", "Terraform", "GitHub Actions", "GitLab CI", "Cloudflare", "Vercel"] },
   { group: "Other", items: ["Git", "nginx", "Tailwind CSS", "Supabase", "Jira"] },
 ];
 
@@ -144,4 +161,14 @@ export const education = {
 export const languages = [
   { name: "Thai", level: "Native" },
   { name: "English", level: "B1 (TOEIC 690)" },
+];
+
+// Derived from the data above so these can never drift out of sync with reality.
+const projectCount = experience.reduce((n, job) => n + job.projects.length, 0);
+
+export const stats: { value: string; label: string }[] = [
+  { value: `${experience.length}`, label: "teams shipped with" },
+  { value: `${projectCount}`, label: "projects delivered" },
+  { value: "2+", label: "years experience" },
+  { value: education.gpa, label: "GPA · first-class" },
 ];

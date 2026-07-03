@@ -1,37 +1,42 @@
+import { LuMail, LuPhone, LuGithub, LuLinkedin, LuArrowUpRight } from "react-icons/lu";
 import { profile } from "@/data/cv";
 
 export default function Contact() {
-  const items = [
-    { label: "Email", value: profile.email, href: `mailto:${profile.email}` },
-    { label: "Phone", value: profile.phone, href: `tel:${profile.phone.replace(/\s/g, "")}` },
-    { label: "GitHub", value: profile.githubHandle, href: profile.github },
-    { label: "LinkedIn", value: "in/than-chayawik", href: profile.linkedin },
+  const channels = [
+    { label: "Email", value: profile.email, href: `mailto:${profile.email}`, Icon: LuMail },
+    { label: "Phone", value: profile.phone, href: `tel:${profile.phone.replace(/\s/g, "")}`, Icon: LuPhone },
+    { label: "GitHub", value: profile.githubHandle, href: profile.github, Icon: LuGithub },
+    { label: "LinkedIn", value: profile.linkedinHandle, href: profile.linkedin, Icon: LuLinkedin },
   ];
 
   return (
-    <div className="rounded-lg border border-border bg-surface p-8 text-center">
-      <h3 className="text-2xl font-bold text-fg">Let&apos;s build something.</h3>
-      <p className="mx-auto mt-2 max-w-md text-sm text-muted">
-        Open to full-stack and DevOps roles. The fastest way to reach me is email.
+    <div>
+      <h3 className="max-w-xl text-3xl font-semibold leading-tight sm:text-4xl">
+        Let&apos;s build something.
+      </h3>
+      <p className="mt-3 max-w-md text-muted">
+        Open to full-stack and DevOps roles. Fastest way to reach me is email.
       </p>
-      <div className="mt-6 grid gap-3 sm:grid-cols-2">
-        {items.map((it) => (
-          <a
-            key={it.label}
-            href={it.href}
-            target={it.href.startsWith("http") ? "_blank" : undefined}
-            rel="noreferrer"
-            className="group flex items-center justify-between rounded-md border border-border bg-bg px-4 py-3 text-left transition-colors hover:border-accent"
-          >
-            <span className="font-mono text-xs uppercase tracking-widest text-muted">
-              {it.label}
-            </span>
-            <span className="text-sm text-fg transition-colors group-hover:text-accent">
-              {it.value}
-            </span>
-          </a>
+
+      <ul className="mt-9 flex flex-col border-t border-line">
+        {channels.map(({ label, value, href, Icon }) => (
+          <li key={label}>
+            <a
+              href={href}
+              target={href.startsWith("http") ? "_blank" : undefined}
+              rel="noreferrer"
+              className="group flex items-center gap-4 border-b border-line py-4 transition-colors hover:text-copper"
+            >
+              <Icon className="h-4 w-4 shrink-0 text-muted transition-colors group-hover:text-copper" />
+              <span className="w-20 shrink-0 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
+                {label}
+              </span>
+              <span className="min-w-0 flex-1 truncate">{value}</span>
+              <LuArrowUpRight className="h-4 w-4 shrink-0 text-line transition-colors group-hover:text-copper" />
+            </a>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }

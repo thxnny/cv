@@ -1,41 +1,47 @@
-import Nav from "@/components/Nav";
-import Hero from "@/components/Hero";
+import Header from "@/components/Header";
+import Cover from "@/components/Cover";
 import Section from "@/components/Section";
 import Experience from "@/components/Experience";
 import Skills from "@/components/Skills";
 import Education from "@/components/Education";
 import Contact from "@/components/Contact";
+import BackToTop from "@/components/BackToTop";
 import { profile } from "@/data/cv";
 
 export default function Home() {
   return (
-    <main>
-      <Nav name={profile.name} />
-      <Hero />
+    <>
+      <div className="grain" aria-hidden />
+      <span className="spine hidden font-mono text-[10px] uppercase text-muted/60 lg:block" aria-hidden>
+        {profile.name} — selected work
+      </span>
+      <Header />
+      <main>
+        <Cover />
 
-      <Section id="about" title="About">
-        <p className="max-w-2xl text-base leading-relaxed text-muted">{profile.summary}</p>
-      </Section>
+        <Section id="about" index="01" title="Profile">
+          <p className="max-w-2xl text-xl leading-relaxed text-fg/90 sm:text-2xl sm:leading-relaxed">
+            {profile.summary}
+          </p>
+        </Section>
 
-      <Section id="experience" title="Experience">
-        <Experience />
-      </Section>
+        <Section id="work" index="02" title="Experience">
+          <Experience />
+        </Section>
 
-      <Section id="skills" title="Skills">
-        <Skills />
-      </Section>
+        <Section id="stack" index="03" title="Skill">
+          <Skills />
+        </Section>
 
-      <Section id="education" title="Education">
-        <Education />
-      </Section>
+        <Section id="education" index="04" title="Education">
+          <Education />
+        </Section>
 
-      <Section id="contact" title="Contact">
-        <Contact />
-      </Section>
-
-      <footer className="border-t border-border/60 py-8 text-center font-mono text-xs text-muted">
-        © {profile.name} · Built with Next.js & Tailwind
-      </footer>
-    </main>
+        <Section id="contact" index="05" title="Contact">
+          <Contact />
+        </Section>
+      </main>
+      <BackToTop />
+    </>
   );
 }

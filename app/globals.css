@@ -1,14 +1,19 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #0a0a0b;
-  --color-surface: #131316;
-  --color-border: #26262b;
-  --color-muted: #8b8b94;
-  --color-fg: #ededef;
-  --color-accent: #6ee7b7;
-  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", monospace;
+  /* "Petrol & Copper" — deep petrol ink, one warm copper accent. */
+  --color-bg: #0b1413;
+  --color-bg-2: #0e1a18;
+  --color-panel: #101e1c;
+  --color-line: #21302d;
+  --color-line-soft: #182422;
+  --color-fg: #eaefeb;
+  --color-muted: #7e948e;
+  --color-copper: #e0935a;
+  --color-copper-deep: #bf7440;
+
+  --font-sans: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-space-mono), ui-monospace, "SF Mono", monospace;
 }
 
 html {
@@ -18,17 +23,86 @@ html {
 body {
   background-color: var(--color-bg);
   color: var(--color-fg);
+  font-family: var(--font-sans);
+  font-size: 17px;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
 }
 
 ::selection {
-  background-color: var(--color-accent);
-  color: #0a0a0b;
+  background-color: var(--color-copper);
+  color: #0b1413;
 }
 
-/* subtle radial glow */
-.glow {
-  background:
-    radial-gradient(60rem 40rem at 70% -10%, rgba(110, 231, 183, 0.08), transparent 60%),
-    radial-gradient(50rem 30rem at 10% 10%, rgba(99, 102, 241, 0.06), transparent 60%);
+/* topographic contour rings — survey/blueprint ambient for the cover */
+.contours {
+  background-image: repeating-radial-gradient(
+    circle at 88% 12%,
+    transparent 0 53px,
+    rgba(224, 147, 90, 0.08) 53px 54px
+  );
+  -webkit-mask-image: radial-gradient(90% 90% at 88% 12%, #000, transparent 70%);
+  mask-image: radial-gradient(90% 90% at 88% 12%, #000, transparent 70%);
+}
+.cover-glow {
+  background: radial-gradient(48rem 32rem at 84% -8%, rgba(224, 147, 90, 0.1), transparent 60%);
+}
+
+/* film grain — adds depth/texture to the flat dark ground */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* spine — a running vertical label down the right edge, like a dossier */
+.spine {
+  position: fixed;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 40;
+  writing-mode: vertical-rl;
+  pointer-events: none;
+  letter-spacing: 0.3em;
+}
+
+/* animated underline for links */
+.ul-anim {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.ul-anim:hover { background-size: 100% 1px; }
+
+/* cover entrance */
+@keyframes cover-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+.cv-in { animation: cover-in 0.85s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* scroll-reveal — only hides when JS is present, so no-JS shows all content */
+.reveal { opacity: 1; transform: none; }
+.js .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  .cv-in { animation: none; }
 }

@@ -1,22 +1,24 @@
 import { skills } from "@/data/cv";
+import { TechInline } from "@/components/Tech";
 
 export default function Skills() {
   return (
-    <div className="grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2">
-      {skills.map((group) => (
-        <div key={group.group} className="bg-surface p-5">
-          <h3 className="mb-3 font-mono text-xs uppercase tracking-widest text-accent">
+    <dl className="flex flex-col">
+      {skills.map((group, i) => (
+        <div
+          key={group.group}
+          className={`grid gap-2 py-5 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-6 ${
+            i > 0 ? "border-t border-line" : "pt-0"
+          }`}
+        >
+          <dt className="font-mono text-xs uppercase tracking-[0.14em] text-copper sm:pt-1">
             {group.group}
-          </h3>
-          <div className="flex flex-wrap gap-2">
-            {group.items.map((item) => (
-              <span key={item} className="rounded-md bg-bg px-2.5 py-1 text-sm text-fg">
-                {item}
-              </span>
-            ))}
-          </div>
+          </dt>
+          <dd>
+            <TechInline items={group.items} />
+          </dd>
         </div>
       ))}
-    </div>
+    </dl>
   );
 }
