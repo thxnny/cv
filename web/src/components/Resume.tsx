@@ -33,11 +33,13 @@ function Reveal({
 const FILES = [
   {
     file: 'resume.pdf',
+    downloadName: 'Than_Chayawik_Resume.pdf',
     label: 'Resume',
     note: 'one page · the quick scan',
   },
   {
     file: 'cv.pdf',
+    downloadName: 'Than_Chayawik_CV.pdf',
     label: 'Full CV',
     note: 'two pages · every project in detail',
   },
@@ -71,7 +73,7 @@ export default function Resume() {
                 </div>
                 <a
                   href={`/${doc.file}`}
-                  download
+                  download={doc.downloadName}
                   className="group flex shrink-0 items-center gap-2 rounded-full bg-primary py-1.5 pl-4 pr-1.5 text-xs font-medium text-black transition-all hover:gap-3 sm:text-sm"
                 >
                   Download
