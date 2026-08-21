@@ -1,9 +1,6 @@
-/node_modules
-/.next
-/out
-/build
-*.pem
-.env*.local
+node_modules
+dist
+*.aux
+*.log
+/resume.pdf
 .DS_Store
-*.tsbuildinfo
-next-env.d.ts

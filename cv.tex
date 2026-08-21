@@ -3,10 +3,10 @@
 % Packages:
 \usepackage[
     ignoreheadfoot,
-    top=2 cm,
-    bottom=2 cm,
-    left=2 cm,
-    right=2 cm,
+    top=0.9 cm,
+    bottom=0.9 cm,
+    left=1.6 cm,
+    right=1.6 cm,
     footskip=1.0 cm,
 ]{geometry}
 \usepackage{graphicx}
@@ -44,7 +44,7 @@
     \usepackage{lmodern}
 \fi
 
-\usepackage{charter}
+\usepackage[default,scale=0.96]{sourcesanspro}
 
 % Some settings:
 \raggedright
@@ -58,16 +58,16 @@
 
 \titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
 
-\titlespacing{\section}{-1pt}{0.3 cm}{0.2 cm}
+\titlespacing{\section}{-1pt}{0.20 cm}{0.10 cm}
 
 \renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$}
 \newenvironment{highlights}{
     \begin{itemize}[
-        topsep=0.10 cm,
-        parsep=0.10 cm,
+        topsep=0.06 cm,
+        parsep=0.06 cm,
         partopsep=0pt,
         itemsep=0pt,
-        leftmargin=0 cm + 10pt
+        leftmargin=0.4 cm + 10pt
     ]
 }{
     \end{itemize}
@@ -106,8 +106,10 @@
     \newsavebox\ANDbox
     \sbox\ANDbox{$|$}
 
-    \begin{header}
-        \fontsize{25 pt}{25 pt}\selectfont Than Chayawik
+    \noindent
+    \begin{minipage}[c]{\dimexpr\textwidth-3.2cm\relax}
+        \raggedright\linespread{1.5}\selectfont
+        {\fontsize{25 pt}{25 pt}\selectfont Than Chayawik}
 
         \vspace{5 pt}
 
@@ -133,14 +135,19 @@
         \faGithub
         \kern 5.0 pt%
         \mbox{\hrefWithoutArrow{https://github.com/thxnny}{thxnny}}%
-    \end{header}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[c]{2.9cm}
+        \raggedleft
+        \includegraphics[width=2.7cm]{resume-photo.jpg}
+    \end{minipage}
 
     \vspace{5 pt - 0.3 cm}
 
 
     \section{Summary}
         \begin{onecolentry}
-            Full-stack software engineer with experience across web development, cloud infrastructure, and DevOps. Built and shipped production systems using React, Next.js, Spring Boot and NestJS while managing AWS infrastructure with Terraform and CI/CD pipelines. Experienced working with international, cross-cultural teams.
+            Full-stack software engineer with 3+ years of experience, focused on cloud infrastructure and DevOps. Shipped production systems with React, Next.js, Spring Boot and NestJS; built AWS/Kubernetes platforms with Terraform, ArgoCD and CI/CD pipelines. Experienced working with international, cross-cultural teams.
         \end{onecolentry}
 
 
@@ -149,62 +156,102 @@
         \begin{twocolentry}{
             May 2025 -- present
         }
-            \large\textbf{Junior Software Engineer}, Onify Company Limited
+            \large\textbf{Software Engineer / DevOps Engineer}, Onify Company Limited
         \end{twocolentry}
 
-        \vspace{0.10 cm}
+        \vspace{0.08 cm}
         \begin{onecolentry}
-            Internal Multi-Tenant Kubernetes Platform [OpenTofu, AWS EKS, ArgoCD, GitHub OIDC]
+            \textbf{Internal Multi-Tenant Kubernetes Platform} \textit{[Terraform, AWS EKS, ArgoCD, GitHub OIDC]}
         \end{onecolentry}
 
-        \vspace{0.10 cm}
+        \vspace{0.08 cm}
         \begin{onecolentry}
             \begin{highlights}
-                \item Designed and built a shared multi-tenant Kubernetes platform on AWS EKS from scratch with OpenTofu, onboarding multiple application tenants onto a single cluster with namespace-level isolation
-                \item Implemented GitOps delivery with ArgoCD (App-of-Apps) and ArgoCD Image Updater, automating the full pipeline: git push $\rightarrow$ ECR build $\rightarrow$ automated image rollout with zero manual deploys
-                \item Eliminated static AWS credentials for all workloads and CI by adopting EKS Pod Identity, IRSA, and GitHub Actions OIDC
-                \item Manage domain and DNS in Cloudflare, standardizing ingress with a wildcard ACM certificate, a shared per-environment ALB, and a wildcard DNS record so onboarding a new application requires zero certificate or DNS work
-                \item Provisioned platform add-ons (AWS Load Balancer Controller, External Secrets Operator, EBS CSI gp3 StorageClass) and supporting infrastructure (ECR, DNS, SES with DKIM), with remote state versioned in S3
+                \item Designed and built a shared multi-tenant Kubernetes platform on AWS EKS from scratch with Terraform, onboarding 3 application tenants onto a single cluster with namespace-level isolation via a reusable tenant module
+                \item Implemented GitOps delivery with ArgoCD (App-of-Apps) and Image Updater — git push $\rightarrow$ ECR build $\rightarrow$ automated rollout — and eliminated static AWS credentials by adopting EKS Pod Identity, IRSA, and GitHub Actions OIDC
+                \item Standardized ingress and DNS with a wildcard ACM certificate, a shared per-environment ALB, and wildcard Cloudflare DNS, and centralized secrets in 1Password via External Secrets Operator, so onboarding a new application requires zero certificate, DNS, or secrets work
+                \item Cut the platform's cloud costs by \textbf{$\sim$51\%} by retiring NAT gateways, consolidating ALBs, adding an S3 gateway VPC endpoint, and right-sizing node groups
             \end{highlights}
         \end{onecolentry}
 
-        \vspace{0.2 cm}
+        \vspace{0.24 cm}
         \begin{onecolentry}
-            Cloud Infrastructure \& DevOps [AWS, Terraform, GitHub Actions, Vercel]
+            \textbf{Retail Client Website with Headless CMS} \textit{[Astro, Payload CMS, PostgreSQL]}
         \end{onecolentry}
 
-        \vspace{0.10 cm}
+        \vspace{0.08 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Develop and maintain a retail client's website with a headless CMS (Astro, Payload CMS, PostgreSQL), deployed as a tenant on the internal Kubernetes platform
+            \end{highlights}
+        \end{onecolentry}
+
+        \vspace{0.24 cm}
+        \begin{onecolentry}
+            \textbf{Cloud Infrastructure \& DevOps} \textit{[AWS, DigitalOcean, Terraform, GitHub Actions, Vercel]}
+        \end{onecolentry}
+
+        \vspace{0.08 cm}
         \begin{onecolentry}
             \begin{highlights}
                 \item Provision and manage cloud infrastructure on AWS (VPC, ECS, ECR, RDS, ALB, Route53) using Terraform for repeatable, version-controlled deployments across 3 environments (Staging, UAT, Production)
+                \item Manage DigitalOcean infrastructure (App Platform, managed Postgres, Spaces + CDN) with Terraform
                 \item Build and maintain CI/CD pipelines with GitHub Actions, enabling zero-downtime deployments with 3--5 releases per week
                 \item Deploy Next.js applications on Vercel and manage application secrets securely
             \end{highlights}
         \end{onecolentry}
 
-        \vspace{0.2 cm}
+        \vspace{0.24 cm}
         \begin{onecolentry}
-            Government Social Welfare Platform [Kubernetes, GitHub Actions, GitLab CI, Docker, ArgoCD]
+            \textbf{Government Social Welfare Platform} \textit{[Kubernetes, GitHub Actions, GitLab CI, Docker, ArgoCD]}
         \end{onecolentry}
 
-        \vspace{0.10 cm}
+        \vspace{0.08 cm}
         \begin{onecolentry}
             \begin{highlights}
                 \item Design and maintain CI/CD pipelines with GitHub Actions and GitLab CI for 5 microservices (Spring Boot + React), using change detection to selectively build and deploy only affected services
                 \item Implement GitOps workflow with ArgoCD and a dedicated infrastructure repo, automating Kubernetes manifest generation and achieving zero-downtime deployments
-                \item Build multi-stage Docker images for Java and React services, including gzip pre-compression of frontend assets for optimized delivery via nginx
-                \item Optimize Dockerfiles by splitting dependency install into a dedicated layer to leverage Docker layer caching, reducing build times by $\sim$70\%
+                \item Build multi-stage Docker images for Java and React services, splitting dependency installs into cached layers and reducing build times by $\sim$70\%
                 \item Manage GitHub-to-GitLab monorepo sync using git subtree, maintaining separate service repos for controlled release branching across Dev, UAT, and Production
                 \item Set up HTTPS reverse proxy bridging for secure communication between internal services and external government APIs
             \end{highlights}
         \end{onecolentry}
 
-        \vspace{0.2 cm}
+        \vspace{0.24 cm}
         \begin{onecolentry}
-            Hospital Information System (HIS) [Angular, Spring Boot, Node.js]
+            \textbf{Project Budget \& Payment Management Platform} \textit{[React, NestJS, TypeORM, PostgreSQL]}
         \end{onecolentry}
 
-        \vspace{0.10 cm}
+        \vspace{0.08 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Develop full-stack features on a NestJS + TypeORM + PostgreSQL backend and a React frontend for project budget planning, disbursement approvals, and payment reconciliation, within a 15+ member team
+                \item Implement multi-currency contract payments and disbursements (THB/LAK) with exchange-rate handling and source-of-fund payment splitting
+                \item Build and maintain budget-tracking logic (used/remaining budget calculations, over-budget guards on installments), dashboard charts and widgets, and reusable form validators
+                \item Resolve role- and permission-related defects in the platform's row-level-security authorization system, including external-user access across backend and frontend
+            \end{highlights}
+        \end{onecolentry}
+
+        \vspace{0.24 cm}
+        \begin{onecolentry}
+            \textbf{AI Bill of Lading Reconciliation System} \textit{[Python, Gemini, Docling OCR]}
+        \end{onecolentry}
+
+        \vspace{0.08 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Tune the AI extraction and comparison engine (Gemini Vision + Docling OCR) that reconciles draft Bills of Lading against shipping particulars across 22 fields and returns a mismatch-highlighted PDF
+                \item Author and tune 100+ carrier-specific comparison templates and refine field-matching rules (consignee/notify-party equivalence, vessel vs pre-carriage swaps, weight and package-count normalization) to reduce false mismatches
+                \item Improve PDF mismatch highlighting for documents with multiple containers and seals
+            \end{highlights}
+        \end{onecolentry}
+
+        \vspace{0.24 cm}
+        \begin{onecolentry}
+            \textbf{Hospital Information System (HIS)} \textit{[Angular, Spring Boot, Node.js]}
+        \end{onecolentry}
+
+        \vspace{0.08 cm}
         \begin{onecolentry}
             \begin{highlights}
                 \item Develop Angular frontend features based on Figma designs from the UX/UI team, implementing complex business logic defined by Business Analysts
@@ -213,7 +260,7 @@
             \end{highlights}
         \end{onecolentry}
 
-        \vspace{0.5 cm}
+        \vspace{0.40 cm}
 
         \begin{twocolentry}{
             Nov 2024 -- Mar 2025
@@ -221,12 +268,12 @@
             \large\textbf{Developer Intern}, Bluebik Vulcan Company Limited
         \end{twocolentry}
 
-        \vspace{0.10 cm}
+        \vspace{0.08 cm}
         \begin{onecolentry}
-            Legal Documents Management System [ReactJS, NestJS, TypeScript]
+            \textbf{Legal Documents Management System} \textit{[ReactJS, NestJS, TypeScript]}
         \end{onecolentry}
 
-        \vspace{0.10 cm}
+        \vspace{0.08 cm}
         \begin{onecolentry}
             \begin{highlights}
                 \item Collaborated with Systems Analysts to design features and translate requirements into implementation
@@ -236,7 +283,7 @@
         \end{onecolentry}
 
 
-        \vspace{0.5 cm}
+        \vspace{0.40 cm}
 
         \begin{twocolentry}{
             Apr 2024 -- Sep 2024
@@ -244,12 +291,12 @@
             \large\textbf{Full Stack Developer Intern}, Trienpont International
         \end{twocolentry}
 
-        \vspace{0.10 cm}
+        \vspace{0.08 cm}
         \begin{onecolentry}
-            Human Resource Management System [Next.js, Supabase, TypeScript]
+            \textbf{Human Resource Management System} \textit{[Next.js, Supabase, TypeScript]}
         \end{onecolentry}
 
-        \vspace{0.10 cm}
+        \vspace{0.08 cm}
         \begin{onecolentry}
             \begin{highlights}
                 \item Gathered requirements directly from HR stakeholders and collaborated with Senior Engineers to architect the solution
@@ -259,24 +306,24 @@
             \end{highlights}
         \end{onecolentry}
 
-        \vspace{0.2 cm}
+        \vspace{0.24 cm}
         \begin{onecolentry}
-            Crypto Game Reviews \& News Platform [Next.js, Strapi, TypeScript]
+            \textbf{Crypto Game Reviews \& News Platform} \textit{[Next.js, Strapi, TypeScript]}
         \end{onecolentry}
 
-        \vspace{0.10 cm}
+        \vspace{0.08 cm}
         \begin{onecolentry}
             \begin{highlights}
                 \item Maintained and enhanced a legacy codebase while improving page load performance and implementing new client-requested features
             \end{highlights}
         \end{onecolentry}
 
-        \vspace{0.2 cm}
+        \vspace{0.24 cm}
         \begin{onecolentry}
-            E-Commerce Product Data Scraper [JavaScript]
+            \textbf{E-Commerce Product Data Scraper} \textit{[JavaScript]}
         \end{onecolentry}
 
-        \vspace{0.10 cm}
+        \vspace{0.08 cm}
         \begin{onecolentry}
             \begin{highlights}
                 \item Reverse-engineered website APIs and built an automated data pipeline with cron jobs to extract and export product data to CSV for analytics
@@ -284,7 +331,7 @@
         \end{onecolentry}
 
 
-        \vspace{0.5 cm}
+        \vspace{0.40 cm}
 
         \begin{twocolentry}{
             Apr 2023 -- Mar 2024
@@ -292,12 +339,12 @@
             \large\textbf{Full Stack Developer Intern}, Computer Center, Burapha University
         \end{twocolentry}
 
-        \vspace{0.10 cm}
+        \vspace{0.08 cm}
         \begin{onecolentry}
-            E-Office Platform: 3 Internal Systems (User Management, Help Desk, IT-Clinic) [NestJS, VueJS, TypeScript]
+            \textbf{E-Office Platform: 3 Internal Systems (User Management, Help Desk, IT-Clinic)} \textit{[NestJS, VueJS, TypeScript]}
         \end{onecolentry}
 
-        \vspace{0.10 cm}
+        \vspace{0.08 cm}
         \begin{onecolentry}
             \begin{highlights}
                 \item Independently built three internal web applications end-to-end after gathering requirements from university administrative staff
@@ -312,28 +359,28 @@
             \textbf{Languages:} TypeScript, JavaScript, Go, Java, HTML, CSS, SQL
         \end{onecolentry}
 
-        \vspace{0.2 cm}
+        \vspace{0.12 cm}
 
         \begin{onecolentry}
-            \textbf{Frameworks:} NestJS, Spring Boot, Echo, Next.js, ReactJS, VueJS, Angular
+            \textbf{Frameworks \& CMS:} NestJS, Spring Boot, Echo, Next.js, ReactJS, VueJS, Angular, Astro, Payload CMS
         \end{onecolentry}
 
-        \vspace{0.2 cm}
+        \vspace{0.12 cm}
 
         \begin{onecolentry}
             \textbf{Database:} PostgreSQL, MySQL, Oracle, Redis
         \end{onecolentry}
 
-        \vspace{0.2 cm}
+        \vspace{0.12 cm}
 
         \begin{onecolentry}
-            \textbf{DevOps:} AWS, Kubernetes, ArgoCD, Docker, Terraform, GitHub Actions, GitLab CI, Cloudflare, Vercel
+            \textbf{DevOps \& Cloud:} AWS, DigitalOcean, Kubernetes, ArgoCD, Docker, Terraform / OpenTofu, GitHub Actions, GitLab CI, Cloudflare, Vercel, nginx
         \end{onecolentry}
 
-        \vspace{0.2 cm}
+        \vspace{0.12 cm}
 
         \begin{onecolentry}
-            \textbf{Other:} Git, nginx, Tailwind CSS, Supabase, Jira
+            \textbf{Other:} Git, Tailwind CSS, Supabase, Jira
         \end{onecolentry}
 
 
@@ -341,21 +388,19 @@
         \begin{twocolentry}{
             2021 -- 2025
         }
-            \textbf{Burapha University}, BS in Computer Science (First Class Honors)
+            \textbf{Burapha University}, BS in Computer Science (First Class Honors), GPA 3.86
         \end{twocolentry}
 
-        \vspace{0.10 cm}
+        \vspace{0.08 cm}
         \begin{onecolentry}
             \begin{highlights}
-                \item \textbf{GPA:} 3.86
                 \item \textbf{Relevant Coursework:} Web Development, Database Systems, Data Structures and Algorithms, Cloud Computing, Data Engineering
             \end{highlights}
         \end{onecolentry}
 
-
-    \section{Languages}
+        \vspace{0.15 cm}
         \begin{onecolentry}
-            \textbf{Thai:} Native \quad\textbf{English:} B1 (TOEIC: 690)
+            \textbf{Languages:} Thai (Native) \quad$|$\quad English B1 (TOEIC 690)
         \end{onecolentry}
 
 \end{document}
