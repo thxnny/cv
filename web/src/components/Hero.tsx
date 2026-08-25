@@ -74,9 +74,10 @@ export default function Hero() {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.5, duration: 0.8, ease: EASE }}
               >
-                Full-stack software engineer with 3+ years shipping production systems in React,
-                Next.js, Spring Boot and NestJS — now focused on cloud infrastructure and DevOps,
-                building AWS and Kubernetes platforms with Terraform, ArgoCD and CI/CD pipelines.
+                Full-stack developer with 3+ years shipping production systems end-to-end with
+                React, Next.js, Spring Boot and NestJS. Experienced in DevOps and cloud
+                engineering, building and operating AWS and Kubernetes platforms with Terraform,
+                ArgoCD and CI/CD pipelines.
               </motion.p>
               <motion.a
                 href="mailto:thanc.work@gmail.com"
